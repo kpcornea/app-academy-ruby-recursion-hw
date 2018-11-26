@@ -3,10 +3,10 @@
 #Write a function sum_to(n) that uses recursion to calculate the sum from 1 to n (inclusive of n).
 
   # Test Cases
-  sum_to(5)  # => returns 15
-  sum_to(1)  # => returns 1
-  sum_to(9)  # => returns 45
-  sum_to(-8)  # => returns nil
+  # sum_to(5)  # => returns 15
+  # sum_to(1)  # => returns 1
+  # sum_to(9)  # => returns 45
+  # sum_to(-8)  # => returns nil
 
 def sum_to(n)
   return n if n == 1 || n == 0
@@ -23,7 +23,8 @@ end
   # add_numbers([]) # => returns nil
 
   def add_numbers(nums_array)
-
+    return nums_array.first if nums_array.length == 1 || nums_array.empty?
+    nums_array.last + add_numbers(nums_array[0...-1])
   end
 
   # Let's write a method that will solve Gamma Function recursively. The Gamma Function is defined Γ(n) = (n-1)!.
@@ -35,7 +36,9 @@ end
   # gamma_fnc(8)  # => returns 5040
 
 def gamma_fnc(n)
-
+  return nil if n == 0
+  return 1 if n == 1
+  (n - 1) * gamma_fnc(n - 1)
 end
 
 # Write a function ice_cream_shop(flavors, favorite) that takes in an array of ice cream flavors available at the ice cream shop, as well as the user's favorite ice cream flavor. Recursively find out whether or not the shop offers their favorite flavor.
@@ -48,7 +51,9 @@ end
   # ice_cream_shop([], 'honey lavender')  # => returns false
 
 def ice_cream_shop(flavors, favorite)
-
+  return true if flavors.last == favorite
+  return false if flavors.length == 1 || flavors.empty?
+  ice_cream_shop(flavors[0...-1], favorite)
 end
 
 # Write a function reverse(string) that takes in a string and returns it reversed.
@@ -63,5 +68,6 @@ end
 
 
 def reverse(str)
-
+  return str if str.length == 1 || str.empty?
+  str[-1] + reverse(str[0...-1])
 end
